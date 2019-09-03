@@ -21,6 +21,18 @@ describe('Index', () => {
     expect(gCrud.app).toEqual(app);
   });
 
+  it('should instantiate a glorious crud without a base resource', () => {
+    const gCrud = new GCrud(null, null, app, true);
+    expect(gCrud.baseResource).toBeUndefined();
+    expect(gCrud.app).toEqual(app);
+  });
+
+  it('should instantiate a glorious crud with an injected resource', () => {
+    const resource = {};
+    const gCrud = GCrud.fromResource(resource, app);
+    expect(gCrud.baseResource).toBe(resource);
+  });
+
   it('should use body parser as json', () => {
     const gCrud = new GCrud(dbUrl, dbName, app);
     expect(gCrud.app.use).toHaveBeenCalledWith(jasmine.any(Function));

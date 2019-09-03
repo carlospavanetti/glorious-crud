@@ -2,11 +2,18 @@ const bodyParser = require('body-parser');
 const BaseResource = require('./resources/base/base');
 const resourceBuilder = require('./resources/builder/builder');
 
-module.exports = class GCrud {
-  constructor(dbUrl, dbName, app){
-    this.baseResource = new BaseResource(dbUrl, dbName);
+class GCrud {
+  constructor(dbUrl, dbName, app, resourceAsDependency){
+    if (!resourceAsDependency)
+      this.baseResource = new BaseResource(dbUrl, dbName);
     this.app = app;
     this.app.use(bodyParser.json());
+  }
+
+  static fromResource(resource, app){
+    const gCrud =  new GCrud(null, null, app, true);
+    gCrud.baseResource = resource;
+    return gCrud;
   }
 
   build(collectionName, collectionOptions){
@@ -17,4 +24,6 @@ module.exports = class GCrud {
       collectionOptions
     );
   }
-}
+};
+
+module.exports = GCrud;
