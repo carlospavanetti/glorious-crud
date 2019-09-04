@@ -32,7 +32,7 @@ describe('Base Resource', () => {
     queryService.build = jest.fn(() => { return {}; });
   });
 
-  it('should connect to mongo db client trough the proper database url', () => {
+  it('should connect to mongo db client through the proper database url', () => {
     stubMongoClientConnect({ response: mockUser() });
     baseResource.get('users');
     expect(mongodb.MongoClient.connect).toHaveBeenCalledWith(DB_URL, jasmine.any(Function));
