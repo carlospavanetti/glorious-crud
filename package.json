@@ -23,6 +23,7 @@
     "api"
   ],
   "dependencies": {
+    "@glorius-internal/postgres-resource": "file:src/resources/postgres",
     "body-parser": "^1.18.2",
     "mongodb": "^3.0.5"
   },

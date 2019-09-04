@@ -1,0 +1,8 @@
+{
+  "name": "@glorius-internal/postgres-resource",
+  "main": "index.js",
+  "version": "0.0.1",
+  "dependencies": {
+    "pg-promise": "^9.1.2"
+  }
+}
